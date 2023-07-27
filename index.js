@@ -4,6 +4,7 @@ const cors = require("cors");
 require("dotenv").config();
 const auth = require("./middleware/auth");
 const path = require("path");
+const mongoose = require("mongoose");
 
 const app = express();
 app.use(bodyParser.json());
@@ -32,9 +33,6 @@ try {
   console.log(error);
 }
 
-const mongoose = require("mongoose");
-
-mongoose.connect("mongodb://127.0.0.1:27017/contacts");
 mongoose.connection.on("connected", () => {
   console.log("connected to MongoDB");
 });
