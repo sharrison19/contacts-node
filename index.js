@@ -100,9 +100,7 @@ app.post("/contacts", auth, async (req, res) => {
     id,
     userID,
   });
-  console.log(req.body);
   const saveContact = await newContact.save();
-  console.log(newContact);
   res.json(saveContact);
 });
 
@@ -125,7 +123,6 @@ app.put("/contacts", auth, async (req, res) => {
 });
 
 app.delete("/contacts/:id", auth, async (req, res) => {
-  console.log(req);
   const deletedContact = await Contact.findOneAndDelete({
     id: req.params.id,
     userID: req.user.id,
@@ -195,7 +192,6 @@ app.post("/login", async (req, res) => {
 
 app.get("/users", auth, async (req, res) => {
   const foundUser = await User.findOne({ _id: req.user.id });
-  console.log("test");
   res.json(foundUser);
 });
 
