@@ -202,6 +202,14 @@ app.get("/users", auth, async (req, res) => {
   res.json(foundUser);
 });
 
-var server = app.listen(5000, () => {
-  console.log("Node server is running on localhost:5000");
+app.get("/*", (req, res) => {
+  res.sendFile(publicPath + "/index.html", (error) => {
+    if (error) {
+      res.status(500).send(error);
+    }
+  });
+});
+
+app.listen(process.env.PORT || 5000, () => {
+  console.log("Server is running on http://localhost:5000");
 });
