@@ -7,6 +7,7 @@ const path = require("path");
 
 const app = express();
 app.use(bodyParser.json());
+const publicPath = path.join(__dirname, "./public");
 app.use(express.static(publicPath));
 
 const databaseURL = process.env.MONGO_URL
@@ -37,8 +38,6 @@ mongoose.connect("mongodb://127.0.0.1:27017/contacts");
 mongoose.connection.on("connected", () => {
   console.log("connected to MongoDB");
 });
-
-const publicPath = path.join(__dirname, "./public");
 
 const bcrypt = require("bcryptjs");
 
